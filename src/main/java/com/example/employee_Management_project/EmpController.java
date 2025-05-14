@@ -20,6 +20,11 @@ public class EmpController {
         return employeeService.readEmployees();
     }
 
+    @GetMapping("employees/{id}")
+    public Employee getAllEmployeeById(@PathVariable Long id){
+        return employeeService.readEmployee(id);
+    }
+
     @PostMapping("employees")
     public String createEmployee(@RequestBody Employee employee){
         return employeeService.createEmployee(employee);
@@ -31,5 +36,10 @@ public class EmpController {
             return "Deleted Successfully.";
         }
         return "Not Deleted.";
+    }
+
+    @PutMapping("employees/{id}")
+    public String putMethodName(@PathVariable Long id,@RequestBody Employee employee){
+        return employeeService.updateEmployee(id,employee);
     }
 }
